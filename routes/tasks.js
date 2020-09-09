@@ -32,6 +32,20 @@ router.get("/",(req,res) => {
     });
 });
 
+//BY ID
+
+router.get("/:taskId",(req,res) => {
+    Task.findById(req.params.taskId)
+    .then((task) =>{
+        if(task) res.send(task);
+        res.status(404).send("not found");
+
+    })
+    .catch((error) => {
+        res.status(500).send(error.message);
+    });
+});
+
 
 
 
